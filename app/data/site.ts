@@ -1,11 +1,10 @@
 /** Update this one file before publishing. Avoid inventing public contact links. */
 export const site = {
-  brand: 'Lam Phuc Hai — Independent Technology Studio',
-  brandDescriptor: 'Independent technology studio',
-  founderName: 'Lam Phuc Hai',
+  brand: 'LPH Technology Company Limited',
+  brandDescriptor: 'Building Intelligent Experiences',
+  founderName: 'Lam Hai',
   /** Leave empty until you have a public, working contact address. */
-  contactEmail: 'lamphucham@lphai.tech',
-  githubUrl: 'https://github.com/hailp-vn38',
+  contactEmail: 'contact@lphai.tech',
   linkedinUrl: '',
   /** Optional resume or public press-kit URL. */
   pressKitUrl: '',
