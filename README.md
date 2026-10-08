@@ -135,4 +135,6 @@ scripts/prepare-pages.mjs   # Nuxt static output -> Cloudflare dist
 - [ ] Check Open Graph card and canonical URLs on the final domain.
 - [ ] Add project screenshots and founder portrait when available.
 
+
+
 Deployment references: https://developers.cloudflare.com/pages/framework-guides/deploy-a-nuxt-site/ and https://nuxt.com/docs/4.x/getting-started/deployment
