@@ -71,6 +71,8 @@ The last command creates **`dist/`** (generated static pages) for Cloudflare Pag
    | Build output directory | `dist` |
    | Node version | `22` (set `NODE_VERSION=22` if not detected) |
 
+   Do not configure a deploy command for this Pages project. In particular, `npx wrangler deploy` publishes a **Worker**, not this static Pages artifact, and will try to use Nuxt's temporary `.output/server/wrangler.json` instead of `dist`.
+
 4. In **Settings → Environment variables**, optionally set `NUXT_PUBLIC_SITE_URL` to the *final public origin*, for example `https://yourbrand.com` (no trailing slash). If unknown initially, omit it; the website still works, but canonical and hreflang URLs won't be emitted.
 5. Deploy. Each push to `main` triggers a new production build. Pull requests can have preview deployments.
 6. For a custom domain, use Pages → Custom domains. **After** the domain is connected, set the `NUXT_PUBLIC_SITE_URL` environment variable to that exact origin and redeploy.

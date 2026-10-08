@@ -64,6 +64,8 @@ Lưu ý: Không commit `node_modules`, `.env`, `dist`, hoặc `.output`. Tệp `
 | Root directory | `/` |
 | Environment variable | `NODE_VERSION=22` |
 
+**Không cấu hình Deploy command** cho Pages project này. Đặc biệt, không dùng `npx wrangler deploy`: đây là lệnh deploy **Worker**, không phải static artifact `dist`, nên Wrangler sẽ cố đọc cấu hình tạm `.output/server/wrangler.json` và báo thiếu `index.mjs`.
+
 4. Chọn **Save and Deploy**. Cloudflare sẽ cài dependency và xuất bản trang trên domain `*.pages.dev`.
 5. Khi đã có địa chỉ chính thức, thêm biến **`NUXT_PUBLIC_SITE_URL=https://<YOUR_SITE>`** (không có dấu `/` ở cuối, không có đường dẫn phụ) tại Settings → Environment variables. **Redeploy** để build canonical, hreflang và sitemap chính xác.
 
@@ -90,5 +92,6 @@ Cloudflare Pages → Custom domains → Add custom domain → làm theo hướng
 - **Canonical/sitemap sai domain:** đổi `NUXT_PUBLIC_SITE_URL` rồi redeploy.
 - **Trang Contact không có email:** cập nhật `app/data/site.ts`.
 - **Build báo lỗi tải package:** kiểm tra kết nối npm registry trong build log và rerun deploy.
+- **Log chạy `npx wrangler deploy` rồi báo thiếu `index.mjs`:** bạn đang dùng Workers build/deploy command. Tạo hoặc chuyển sang **Pages → Connect to Git**, để Build command=`npm run build`, Output directory=`dist`, và xoá Deploy command. Nếu deploy bằng CLI, dùng `npx wrangler pages deploy dist --project-name <ten-project>`.
 
 Tài liệu chính thức: https://developers.cloudflare.com/pages/framework-guides/deploy-a-nuxt-site/

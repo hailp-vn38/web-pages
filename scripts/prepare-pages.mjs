@@ -10,15 +10,28 @@ const routes = [
   '/vi/about', '/vi/contact', '/vi/notes',
 ]
 
+let hasStandardOutput = true
 try {
   await stat(source)
-} catch {
-  throw new Error('Nuxt prerender output is missing. Run `nuxt generate` first.')
+} catch (err) {
+  if (err?.code !== 'ENOENT') throw err
+  hasStandardOutput = false
 }
 
-await rm(target, { recursive: true, force: true })
-await mkdir(target, { recursive: true })
-await cp(source, target, { recursive: true, force: true })
+if (hasStandardOutput) {
+  await rm(target, { recursive: true, force: true })
+  await mkdir(target, { recursive: true })
+  await cp(source, target, { recursive: true, force: true })
+} else {
+  try {
+    await stat(target)
+  } catch (err) {
+    if (err?.code === 'ENOENT') {
+      throw new Error('Nuxt prerender output is missing. Run `nuxt generate` first.')
+    }
+    throw err
+  }
+}
 
 for (const route of routes) {
   const base = route === '/' ? '' : route.slice(1)
